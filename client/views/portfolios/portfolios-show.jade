@@ -17,13 +17,15 @@ h3 {{name | uppercase}} : {{position | currency}}
     table.table.table-striped
       thead
         tr
+          th Sell
           th Symbol
           th Price
           th Quantity
           th Position
           th Purchased
       tbody
-        tr(ng-repeat='stock in stocks')
+        tr(ng-repeat='stock in stocks track by $index')
+          td: button.btn.btn-xs.btn-danger(ng-click='sell(stock, $index)') Sell
           td {{stock.symbol}}
           td {{stock.quote | currency}}
           td {{stock.quantity}}

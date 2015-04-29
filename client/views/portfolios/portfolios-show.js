@@ -17,6 +17,19 @@ angular.module('eTrade')
     });
   };
 
+  $scope.sell = function(s){
+    var id = s.$id;
+    var stock = new Stock(s);
+
+    stock.getQuote()
+    .then(function(response){
+      stock.quote = response.data.LastPrice;
+      Portfolio.sellStock(stock, $state.params.name, id);
+    })
+
+
+  };
+
   function clearFields(){
     $scope.stock = null;
   }

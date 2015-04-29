@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eTrade')
-.factory('Portfolio', function($rootScope, $firebaseArray, $window){
+.factory('Portfolio', function($rootScope, $firebaseArray, $window, $firebaseObject){
 
   function Portfolio(){
   }
@@ -18,6 +18,17 @@ angular.module('eTrade')
     stock.purchasedOn = $window.Firebase.ServerValue.TIMESTAMP;
     return afPortfolios.$add(stock);
   };
+
+  Portfolio.sellStock = function(stock, portfolio, id){
+    var fbPortfolio = $rootScope.fbUser.child('portfolios/' + portfolio);
+    var fbStock = fbPortfolio.child(id);
+
+    var afStock = $firebaseObject(fbStock);
+  
+    afStock.$loaded().then(function(){
+      afStock.$remove();
+    });
+  }
 
   Portfolio.add = function(name){
     var names = $rootScope.afUser.names ? $rootScope.afUser.names.split(',') : [];
