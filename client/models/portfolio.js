@@ -24,6 +24,9 @@ angular.module('eTrade')
     var fbStock = fbPortfolio.child(id);
     var afStock = $firebaseObject(fbStock);
 
+    $rootScope.afUser.balance += (stock.quantity * stock.quote);
+    $rootScope.afUser.$save();
+
     afStock.$loaded().then(function(){
       afStock.$remove();
     });

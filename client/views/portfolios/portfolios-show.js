@@ -14,6 +14,7 @@ angular.module('eTrade')
     stock.getQuote()
     .then(function(response){
       stock.quote = response.data.LastPrice;
+      console.log(response.data);
       if(stock.purchase()){
         Portfolio.addStock(stock, $state.params.name).then(clearFields);
       }
@@ -28,6 +29,8 @@ angular.module('eTrade')
     .then(function(response){
       stock.quote = response.data.LastPrice;
       Portfolio.sellStock(stock, $state.params.name, id);
+
+  
     })
 
 
