@@ -7,6 +7,7 @@ angular.module('eTrade')
   }
 
   Profile.deposit = function(amount){
+    // if rootscope
     if(!$rootScope.afUser.balance){
       $rootScope.afUser.balance = 0;
     }

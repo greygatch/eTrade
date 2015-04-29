@@ -6,11 +6,13 @@ angular.module('eTrade')
   $scope.afUser.$watch(createScope);
 
   $scope.deposit = function(amount){
+    console.log($scope.afUser.profile);
     Profile.deposit(amount)
     .then(function(){
       $scope.amount = 0;
     });
   };
+
 
   $scope.save = function(profile){
     Profile.save(profile);

@@ -22,9 +22,8 @@ angular.module('eTrade')
   Portfolio.sellStock = function(stock, portfolio, id){
     var fbPortfolio = $rootScope.fbUser.child('portfolios/' + portfolio);
     var fbStock = fbPortfolio.child(id);
-
     var afStock = $firebaseObject(fbStock);
-  
+
     afStock.$loaded().then(function(){
       afStock.$remove();
     });

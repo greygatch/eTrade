@@ -10,3 +10,4 @@ h3 LIST PORTFOLIOS
         tr(ng-repeat='name in names')
           td: a(ui-sref='portfolios.show({name:name})') {{name}}
   .col-xs-9
+    h1 {{balance | currency}}

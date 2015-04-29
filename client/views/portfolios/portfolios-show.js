@@ -5,6 +5,9 @@ angular.module('eTrade')
   $scope.name = $state.params.name;
   $scope.stocks = Portfolio.getStocks($state.params.name);
   $scope.stocks.$watch(computePosition);
+  $scope.profileName = $scope.afUser.profile.name;
+  $scope.balance = $scope.afUser.balance;
+
 
   $scope.purchase = function(s){
     var stock = new Stock(s);
@@ -38,5 +41,6 @@ angular.module('eTrade')
     $scope.position = $scope.stocks.reduce(function(acc, stock){
       return acc + stock.position;
     }, 0);
+    $scope.balance = $scope.afUser.balance;
   }
 });
